@@ -1,5 +1,4 @@
-// Version 1.0
-
+// Version 1.1
 
 let dealerSum = 0
 let youSum = 0
@@ -9,7 +8,7 @@ let dealerWins = 0
 // Cards 2-10 are face value
 // Jack, Queen, King are worth 10.
 // Ace is either 1 or 11, player's choice
-const cardChoices = [1,2,3,4,5,6,7,8,9,10,10,10,11]
+let cardChoices = [1,2,3,4,5,6,7,8,9,10,10,10,11]
 //
 const hitButton = document.getElementById("hit");
 const standButton = document.getElementById("stand");
@@ -28,8 +27,15 @@ const dealerWinsNum = document.getElementById("dealerWinsNum");
 const playerWinsNum = document.getElementById("playerWinsNum");
 // Functions
 const hit = () => {
-    let random = Math.floor(Math.random() * cardChoices.length)
-    youSumValue.innerText = parseFloat(this.youSum.innerText) + parseFloat(cardChoices[random])
+    let random = Math.floor(Math.random() * cardChoices.length);
+
+    let randomCardYou = parseFloat(cardChoices[random]);
+
+    cardChoices.splice(cardChoices[random] - 1, 1)
+    // console.log(cardChoices);
+
+    youSumValue.innerText = parseFloat(this.youSum.innerText) + randomCardYou;
+    youCards.innerText = youCards.innerText + "  " + randomCardYou;
 
     // Win/lose conditions
 
@@ -50,8 +56,15 @@ const hit = () => {
 
 
 const stand = () => {
-    let random = Math.floor(Math.random() * cardChoices.length)
-    dealerSumValue.innerText = parseFloat(this.dealerSum.innerText) + parseFloat(cardChoices[random])
+    let random = Math.floor(Math.random() * cardChoices.length);
+
+    let randomCardDealer = parseFloat(cardChoices[random]);
+
+    cardChoices.splice(cardChoices[random] - 1, 1)
+    // console.log(cardChoices);
+
+    dealerSumValue.innerText = parseFloat(this.dealerSum.innerText) + randomCardDealer;
+    dealerCards.innerText = dealerCards.innerText + "  " + randomCardDealer;
 
     if (parseFloat(dealerSumValue.innerText) > 21)
     {
@@ -70,10 +83,14 @@ const stand = () => {
 }
 
 const playAgain = () => {
+    cardChoices = [1,2,3,4,5,6,7,8,9,10,10,10,11]
     hitButton.disabled = true;
     standButton.disabled = true;
-
     startButton.disabled = false;
+
+    youCards.innerText = "";
+    dealerCards.innerText = "";
+    
     startButton.innerText = 'Play Again'
 }
 // Disable buttons before user can press start
@@ -81,16 +98,22 @@ hitButton.disabled = true;
 standButton.disabled = true;
 startButton.disabled = false;
 
+
 const startGame = () => {
+    cardChoices = [1,2,3,4,5,6,7,8,9,10,10,10,11]
     // Player Start
-    let random = Math.floor(Math.random() * cardChoices.length) // Pick two random numbers for starting deck
-    this.youSum.innerText = cardChoices[random] + cardChoices[random]
-    youSum = this.youSum.innerText
+    let random = Math.floor(Math.random() * cardChoices.length); 
+    let anotherRandom = Math.floor(Math.random() * cardChoices.length);
+    this.youSum.innerText = cardChoices[random] + cardChoices[anotherRandom];
+    youSum = this.youSum.innerText;
+    youCards.innerText = cardChoices[random] + " " + cardChoices[anotherRandom];
     
     // Dealer Start
-    let randomDealer = Math.floor(Math.random() * cardChoices.length)
-    this.dealerSum.innerText = cardChoices[randomDealer] + cardChoices[randomDealer]
-    dealerSum = this.dealerSum.innerText
+    let randomDealer = Math.floor(Math.random() * cardChoices.length);
+    let anotherRandomDealer = Math.floor(Math.random() * cardChoices.length);
+    this.dealerSum.innerText = cardChoices[randomDealer] + cardChoices[anotherRandomDealer];
+    dealerSum = this.dealerSum.innerText;
+    dealerCards.innerText = cardChoices[randomDealer] + " " + cardChoices[anotherRandomDealer];
 
     // Re-enable the main butts!
     hitButton.disabled = false;
@@ -104,15 +127,13 @@ const startGame = () => {
     
 }
 
-
-
-
 // Event listeners
 hitButton.addEventListener("click", () => {
     hit();
 });
 
 standButton.addEventListener("click", () => {
+    stand();
     stand();
 });
 
