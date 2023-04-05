@@ -5,9 +5,6 @@ let youSum = 0
 
 let playerWins = 0
 let dealerWins = 0
-// Cards 2-10 are face value
-// Jack, Queen, King are worth 10.
-// Ace is either 1 or 11, player's choice
 let cardChoices = [1,2,3,4,5,6,7,8,9,10,10,10,11]
 //
 const hitButton = document.getElementById("hit");
