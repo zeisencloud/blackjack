@@ -10,6 +10,7 @@ Stand gives Dealer two cards everytime stand is hit
 
 CSS improvements, box the main game in a half transparent box, change font.
 
+If dealer or you gets drawn 21 from the start game, it does not win.
 
 
 
