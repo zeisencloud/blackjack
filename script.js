@@ -6,7 +6,7 @@ let youSum = 0
 let playerWins = 0
 let dealerWins = 0
 let cardChoices = [1,2,3,4,5,6,7,8,9,10,10,10,11]
-//
+
 const hitButton = document.getElementById("hit");
 const standButton = document.getElementById("stand");
 const startButton = document.getElementById("start");
