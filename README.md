@@ -2,7 +2,8 @@
 https://zeisencloud.github.io/blackjack/
 WIP Blackjack with some different rules
 
-Known bugs/to do - 
+Known bugs/to do -
+
 Too easy for You to win
 
 Stand gives Dealer two cards everytime stand is hit
